@@ -1,22 +1,25 @@
+from pathlib import Path
+
 # Base data path
-DATA_PATH = '../data'
+ROOT_PATH = Path(__file__).resolve().parent.parent
+DATA_PATH = ROOT_PATH / 'data'
 
 ### INPUT DATA PATHS ###
-INPUT_DATA_PATH = DATA_PATH + '/input'
+INPUT_DATA_PATH = DATA_PATH / 'input'
 
-BOOK_DESCRIPTIONS_PATH = INPUT_DATA_PATH + '/book_descriptions.csv'
-BOOK_GENRES_PATH = INPUT_DATA_PATH + '/book_genres.csv'
-BOOKS_PATH = INPUT_DATA_PATH + '/books.csv'
-GENRES_PATH = INPUT_DATA_PATH + '/genres.csv'
-SAMPLE_SUBMISSION_PATH = INPUT_DATA_PATH + '/sample_submission.csv'
-TEST_PATH = INPUT_DATA_PATH + '/test.csv'
-TRAIN_PATH = INPUT_DATA_PATH + '/train.csv'
-USERS_PATH = INPUT_DATA_PATH + '/users.csv'
+BOOK_DESCRIPTIONS_PATH = INPUT_DATA_PATH / 'book_descriptions.csv'
+BOOK_GENRES_PATH = INPUT_DATA_PATH / 'book_genres.csv'
+BOOKS_PATH = INPUT_DATA_PATH / 'books.csv'
+GENRES_PATH = INPUT_DATA_PATH / 'genres.csv'
+SAMPLE_SUBMISSION_PATH = INPUT_DATA_PATH / 'sample_submission.csv'
+TEST_PATH = INPUT_DATA_PATH / 'test.csv'
+TRAIN_PATH = INPUT_DATA_PATH / 'train.csv'
+USERS_PATH = INPUT_DATA_PATH / 'users.csv'
 
 ### OUTPUT DATA PATHS ###
-OUTPUT_DATA_PATH = DATA_PATH + '/output'
-OUTPUT_MODELS = OUTPUT_DATA_PATH + '/models'
-OUTPUT_SUBMISSIONS = OUTPUT_DATA_PATH + '/submissions'
+OUTPUT_DATA_PATH = DATA_PATH / 'output'
+OUTPUT_MODELS = OUTPUT_DATA_PATH / 'models'
+OUTPUT_SUBMISSIONS = OUTPUT_DATA_PATH / 'submissions'
 
 ### LOCAL DATA PATHS ###
-LOCAL_DATA_PATH = DATA_PATH + '/local'
+LOCAL_DATA_PATH = DATA_PATH / 'local'
