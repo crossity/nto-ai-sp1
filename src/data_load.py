@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from config import *
+from src.config import *
 
 def load_train() -> pd.DataFrame:
     train = pd.read_csv(
@@ -11,7 +11,7 @@ def load_train() -> pd.DataFrame:
             'book_id': np.int64,
             'has_read': np.int64,
             'rating': np.float64,
-            'timestamp': np.str
+            'timestamp': str
         }
     )
 
@@ -22,7 +22,7 @@ def load_book_description() -> pd.DataFrame:
         BOOK_DESCRIPTIONS_PATH,
         dtype={
             'book_id': np.int64,
-            'description': np.str
+            'description': str
         }
     )
 
@@ -44,9 +44,9 @@ def load_books() -> pd.DataFrame:
         BOOKS_PATH,
         dtype={
             'book_id': np.int64,
-            'title': np.str,
+            'title': str,
             'author_id': np.int64,
-            'author_name': np.str,
+            'author_name': str,
             'publication_year': np.int64,
             'language': np.int64,
             'avg_rating': np.float64,
@@ -61,7 +61,7 @@ def load_genres() -> pd.DataFrame:
         GENRES_PATH,
         dtype={
             'genre_id': np.int64,
-            'genre_name': np.str,
+            'genre_name': str,
             'books_count': np.int64
         }
     )
@@ -84,7 +84,7 @@ def load_users() -> pd.DataFrame:
         USERS_PATH,
         dtype={
             'user_id': np.int64,
-            'gender': np.int64
+            'gender': np.int64,
             'age': np.int64
         }
     )
