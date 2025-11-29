@@ -1,4 +1,5 @@
 src/__pycache__/
 data/
 *.csv
+*.pq
 .DS_Store
