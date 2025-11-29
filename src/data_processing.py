@@ -64,6 +64,14 @@ def process():
     print('Saving train...')
     train.to_parquet(LOCAL_DATA_PATH / 'train.pq', index=False)
 
+    ## Ungrouping testing data
+    print('Ungrouping test data...')
+    test = load_test()
+    test = process_ratings(test)
+
+    print('Saving test...')
+    test.to_parquet(LOCAL_DATA_PATH / 'test.pq', index=False)
+
 
 if __name__ == '__main__':
     process()

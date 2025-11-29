@@ -50,7 +50,7 @@ def load_books() -> pd.DataFrame:
             'publication_year': np.int64,
             'language': np.int64,
             'avg_rating': np.float64,
-            'publisher': np.float64
+            'publisher': np.int64
         }
     )
 

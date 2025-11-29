@@ -105,7 +105,7 @@ def create_descriptions_embeddings():
         axis=1
     )
 
-    out_df.to_csv(DESCRIPTIONS_EMBEDDINGS_PATH, index=False)
+    out_df.to_parquet(DESCRIPTIONS_EMBEDDINGS_PATH, index=False)
 
 if __name__ == '__main__':
     create_descriptions_embeddings()
