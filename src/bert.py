@@ -1,7 +1,4 @@
-import argparse
 import math
-import os
-import sys
 from typing import List
 
 import numpy as np
@@ -9,6 +6,9 @@ import pandas as pd
 import torch
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModel
+from sklearn.decomposition import TruncatedSVD
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import Normalizer
 
 from src.config import *
 from src.data_load import *
@@ -87,21 +87,22 @@ def create_descriptions_embeddings():
                 out = model(**enc)
                 pooled = mean_pooling(out.last_hidden_state, enc["attention_mask"])
         else:
-            out = model(**enc)
-            pooled = mean_pooling(out.last_hidden_state, enc["attention_mask"])
-
-        pooled = l2_normalize(pooled)
-
+            out = model(**enc)  
         all_embs[s:e, :] = to_float32_cpu(pooled)
 
         del enc, out, pooled
         if device.type == "cuda":
             torch.cuda.empty_cache()
 
-    feature_cols = [f"emb_{i:03d}" for i in range(hidden_size)]
+    svd = TruncatedSVD(n_components=BERT_DIM, random_state=0)
+    pipe = make_pipeline(svd, Normalizer(copy=False))
+
+    all_embs_red = pipe.fit_transform(all_embs).astype(np.float32)
+
+    feature_cols = [f"emb_{i:03d}" for i in range(BERT_DIM)]
     out_df = pd.concat(
         [df[['book_id']].reset_index(drop=True),
-         pd.DataFrame(all_embs, columns=feature_cols)],
+         pd.DataFrame(all_embs_red, columns=feature_cols)],
         axis=1
     )
 

@@ -33,3 +33,11 @@ BERT_BATCH_SIZE = 32
 BERT_SEED = 123
 BERT_MODEL_NAME = 'DeepPavlov/rubert-base-cased'
 BERT_HIDDEN_SIZE = 768
+BERT_DIM = 128
+
+### TF IDF ###
+TOKEN_PATTERN_HYPHEN = r"[A-Za-zА-Яа-яЁё0-9]+(?:-[A-Za-zА-Яа-яЁё0-9]+)*"
+TFIDF_DIM = 64
+
+### MODEL ###
+CAT_FEATURES = ['user_id', 'book_id', 'gender', 'author_id', 'language', 'publisher']
