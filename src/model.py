@@ -69,7 +69,7 @@ def model_fit(train: pd.DataFrame) -> CatBoostRegressor:
     # X = train.drop(target_feature, axis=1)
     # y = train[target_feature]
 
-    model = CatBoostRegressor(iterations=200, learning_rate=0.1, depth=8, l2_leaf_reg=15, subsample=0.8, rsm=0.8, random_state=67, loss_function='RMSE', early_stopping_rounds=200)
+    model = CatBoostRegressor(iterations=4000, learning_rate=0.03, depth=8, l2_leaf_reg=15, subsample=0.8, rsm=0.8, random_state=67, loss_function='RMSE', early_stopping_rounds=200)
     model.fit(train_data, eval_set=eval_data)
 
     return model
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     model = model_fit(train)
     model_save(model)
 
-    show_learning_curve(model)
+    # show_learning_curve(model)
 
     test = pd.read_parquet(LOCAL_DATA_PATH / 'test.pq')
     submit = predict(test, model)
